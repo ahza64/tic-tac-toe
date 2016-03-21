@@ -3,6 +3,7 @@ $(document).ready(function() {
   // all code to manipulate the DOM
   // goes inside this function
 
+//This adds to jquery to be able to add sound bites
   $.extend({
    playSound: function(){
      return $(
@@ -21,12 +22,14 @@ $(document).ready(function() {
       function whosGonnaPlay(event){
         if(($(this).text() !== "X") && ($(this).text() !== "O")){
           if(turn % 2 === 0){
+            //had to keep unwanted text for now
             $(this).text("X");
             $(this).prepend('<img src="https://media.giphy.com/media/qSVMNkreyWbza/giphy.gif"/>');
             $('.whosTurn').text('Go OOOO!!!');
             turn ++;
             $.playSound('http://www.thesoundarchive.com/starwars/swvader02');
           }else{
+            //had to keep unwanted text for now
             $(this).text("O");
             $(this).prepend('<img src="https://media.giphy.com/media/fL8x5Zjbiw2VG/giphy.gif"/>');
             $.playSound('http://www.thesoundarchive.com/starwars/dange-disturb');
@@ -35,11 +38,14 @@ $(document).ready(function() {
           }
         }
         isWinner();
-        if (turn === 8){
-          $('.whosTurn').text('Draw');
-        }
+
+        //ran out of time to get the 'draw' function to work
+        //if (turn === 8){
+        //  $('.whosTurn').text('Draw');
+        //}
     });
 
+    //I was going to count rounds and reset game seperately
   $('#boardReset').on('click',
     function LetsTryEmAgain(event){
       $('.box').text('');
@@ -54,6 +60,7 @@ $(document).ready(function() {
       window.location.reload();
     });
 
+//this is to check winner, I'm definitely sure there's an easier way
   var ticTacToeBoard = $('.box');
   function isWinner() {
     if($(ticTacToeBoard).eq(0).text() === 'X' &&
